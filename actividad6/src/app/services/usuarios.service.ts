@@ -9,17 +9,16 @@ import { lastValueFrom } from 'rxjs';
 export class UsuariosService {
   //  constructor() { }
   httpUsuario = inject(HttpClient);
-  page!: number;
-  miUrl = `https://peticiones.online/users?page=${this.page}`;
-  miUrlId = 'https://peticiones.online/api/users';
+  pagina!: number;
 
-  getAll(): Promise<IUsuario[]> {
-    return lastValueFrom(this.httpUsuario.get<IUsuario[]>(this.miUrl));
+  miUrl = 'https://peticiones.online/api/users';
+
+  getAll(pagina: number): Promise<IUsuario[]> {
+    const url = `${this.miUrl}?page=${pagina}`;
+    return lastValueFrom(this.httpUsuario.get<IUsuario[]>(url));
   }
 
   getById(id: string): Promise<IUsuario> {
-    return lastValueFrom(
-      this.httpUsuario.get<IUsuario>(`${this.miUrlId}/${id}`)
-    );
+    return lastValueFrom(this.httpUsuario.get<IUsuario>(`${this.miUrl}/${id}`));
   }
 }
