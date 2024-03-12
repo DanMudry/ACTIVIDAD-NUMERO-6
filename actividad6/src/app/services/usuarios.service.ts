@@ -13,10 +13,12 @@ export class UsuariosService {
   miUrl = `https://peticiones.online/users?page=${this.page}`;
   miUrlId = 'https://peticiones.online/api/users';
 
-  getAll(): Promise<IUsuario[]> {
+  /*getAll(page: number): Promise<IUsuario[]> {
     return lastValueFrom(this.httpUsuario.get<IUsuario[]>(this.miUrl));
+  }*/
+  getAll(): Promise<IUsuario[]> {
+    return lastValueFrom(this.httpUsuario.get<IUsuario[]>(this.miUrlId));
   }
-
   getById(id: string): Promise<IUsuario> {
     return lastValueFrom(
       this.httpUsuario.get<IUsuario>(`${this.miUrlId}/${id}`)
