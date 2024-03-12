@@ -13,6 +13,8 @@ import { UsuarioviewComponent } from '../usuarioview/usuarioview.component';
 })
 export class UsuariolistComponent {
   usuarioService = inject(UsuariosService);
+  arrPag1: IUsuario[] = [];
+  arrPag2: IUsuario[] = [];
   arrUsuario: IUsuario[] = [];
   page: number = 1;
   miUsuario!: IUsuario;
@@ -20,9 +22,12 @@ export class UsuariolistComponent {
   async ngOnInit(): Promise<void> {
     try {
       let response: any;
-      response = await this.usuarioService.getAll(this.page);
-      this.arrUsuario = response.results;
-      console.log(this.arrUsuario);
+      response = await this.usuarioService.getAll(1);
+      this.arrPag1 = response.results;
+      console.log(response.results);
+      response = await this.usuarioService.getAll(2);
+      this.arrPag2 = response.results;
+      this.arrUsuario = this.arrPag1.concat(this.arrPag2);
     } catch (err) {
       alert('error');
     }

@@ -5,19 +5,34 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h4 class="card-title">
+        <h4 class="card-title text-bg-dark">
           {{ miUsuario.first_name }}, {{ miUsuario.last_name }}
         </h4>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Id Usuario: {{ miUsuario.id }}</li>
-        <li class="list-group-item">Usuario: {{ miUsuario.username }}</li>
-        <li class="list-group-item">Email: {{ miUsuario.email }}</li>
+        <li class="list-group-item text-black-50">
+          Id Usuario:
+          <span class="text-black"> {{ miUsuario.id }} </span>
+        </li>
+        <li class="list-group-item text-black-50">
+          Usuario:
+          <span class="text-black">{{ miUsuario.username }}</span>
+        </li>
+        <li class="list-group-item text-black-50">
+          Email:
+          <span class="text-black"> {{ miUsuario.email }}</span>
+        </li>
       </ul>
       <div class="card-body">
-        <a href="#" class="card-link">Detalle</a>
-        <a href="#" class="card-link">Modificar</a>
-        <a href="#" class="card-link">Eliminar</a>
+        <a class="card-link text-black-50" [routerLink]="['/detalleusuario']"
+          >Detalle</a
+        >
+        <a class="card-link text-black-50" [routerLink]="['/modificausuario']"
+          >Modificar</a
+        >
+        <a class="card-link text-black-50" [routerLink]="['/eliminausuario']"
+          >Eliminar</a
+        >
       </div>
     </div>
   </div>
