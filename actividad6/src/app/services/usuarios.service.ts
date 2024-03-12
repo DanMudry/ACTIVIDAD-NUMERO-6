@@ -9,12 +9,12 @@ import { lastValueFrom } from 'rxjs';
 export class UsuariosService {
   //  constructor() { }
   httpUsuario = inject(HttpClient);
-  pagina!: number;
+  page!: number;
 
   miUrl = 'https://peticiones.online/api/users';
 
-  getAll(pagina: number): Promise<IUsuario[]> {
-    const url = `${this.miUrl}?page=${pagina}`;
+  getAll(page: number): Promise<IUsuario[]> {
+    const url = `${this.miUrl}?page=${page}`;
     return lastValueFrom(this.httpUsuario.get<IUsuario[]>(url));
   }
 

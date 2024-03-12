@@ -12,12 +12,12 @@ import { IUsuario } from '../../interfaces/iusuario.interface';
 export class UsuariolistComponent {
   usuarioService = inject(UsuariosService);
   arrUsuario: IUsuario[] = [];
-  pagina: number = 1;
+  page: number = 1;
 
   async ngOnInit(): Promise<void> {
     try {
       let response: any;
-      response = await this.usuarioService.getAll(this.pagina);
+      response = await this.usuarioService.getAll(this.page);
       this.arrUsuario = response.results;
       console.log(this.arrUsuario);
     } catch (err) {
