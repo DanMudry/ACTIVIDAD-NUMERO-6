@@ -1,12 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UsuariosService } from '../../services/usuarios.service';
+import { IUsuario } from '../../interfaces/iusuario.interface';
 
 @Component({
   selector: 'app-usuariocard',
   standalone: true,
   imports: [],
   templateUrl: './usuariocard.component.html',
-  styleUrl: './usuariocard.component.css'
+  styleUrl: './usuariocard.component.css',
 })
 export class UsuariocardComponent {
-
+  rutaActiva = inject(ActivatedRoute);
+  usuarioService = inject(UsuariosService);
+  unUsuario!: IUsuario;
+  ngOnInit(): void {
+    this.rutaActiva.params.subscribe((params: any) => {
+      const idUsuario = params.idU;
+      console.log(idUsuario);
+    });
+  }
 }

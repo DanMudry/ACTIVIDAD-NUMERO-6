@@ -1,6 +1,8 @@
 <div class="card mb-2 p-1">
   <div class="row g-0">
-    <div class="col-md-4 d-flex justify-content-center align-items-center ms-0">
+    <div
+      class="col-md-4 d-flex justify-content-center align-items-center ms-0 mt-3"
+    >
       <img [src]="miUsuario.image" class="img-fluid rounded-start" />
     </div>
     <div class="col-md-8">
@@ -9,7 +11,7 @@
           {{ miUsuario.first_name }}, {{ miUsuario.last_name }}
         </h4>
       </div>
-      <ul class="list-group list-group-flush">
+      <!--<ul class="list-group list-group-flush">
         <li class="list-group-item text-black-50">
           Id Usuario:
           <span class="text-black"> {{ miUsuario.id }} </span>
@@ -22,9 +24,11 @@
           Email:
           <span class="text-black"> {{ miUsuario.email }}</span>
         </li>
-      </ul>
-      <div class="card-body">
-        <a class="card-link text-black-50" [routerLink]="['/detalleusuario']"
+      </ul>-->
+      <div class="card-body" style="position: absolute; bottom: 0">
+        <a
+          class="card-link text-black-50"
+          [routerLink]="['/detalleusuario', miUsuario._id]"
           >Detalle</a
         >
         <a class="card-link text-black-50" [routerLink]="['/modificausuario']"
