@@ -1,1 +1,45 @@
-<p>usuarioview works!</p>
+<!--<div class="card" style="width: 26rem">
+  <img
+    [src]="miUsuario.image"
+    class="card-img-top p-2 rounded img-fluid"
+    alt="..."
+  />
+  <div class="card-body">
+    <h4 class="card-title">
+      {{ miUsuario.first_name }}, {{ miUsuario.last_name }}
+    </h4>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Id Usuario: {{ miUsuario.id }}</li>
+    <li class="list-group-item">Usuario: {{ miUsuario.username }}</li>
+    <li class="list-group-item">Email: {{ miUsuario.email }}</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>-->
+<div class="card mb-2 p-1">
+  <div class="row g-0">
+    <div class="col-md-4 d-flex justify-content-center align-items-center ms-0">
+      <img [src]="miUsuario.image" class="img-fluid rounded-start" />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h4 class="card-title">
+          {{ miUsuario.first_name }}, {{ miUsuario.last_name }}
+        </h4>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Id Usuario: {{ miUsuario.id }}</li>
+        <li class="list-group-item">Usuario: {{ miUsuario.username }}</li>
+        <li class="list-group-item">Email: {{ miUsuario.email }}</li>
+      </ul>
+      <div class="card-body">
+        <a href="#" class="card-link">Detalle</a>
+        <a href="#" class="card-link">Modificar</a>
+        <a href="#" class="card-link">Eliminar</a>
+      </div>
+    </div>
+  </div>
+</div>
