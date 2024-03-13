@@ -1,1 +1,22 @@
-<p>usuariocard works!</p>
+<section class="container mt-3">
+  <div class="card shadow p-3">
+    <div class="row">
+      <figure class="col-12 col-md-3">
+        <img class="img-fluid" [src]="unUsuario.image" />
+      </figure>
+      <div class="col-12 col-md-9">
+        <h2>{{ unUsuario.first_name }}, {{ unUsuario.last_name }}</h2>
+        <hr />
+
+        <p>Email: {{ unUsuario.email }}</p>
+        <p>Alias: {{ unUsuario.username }}</p>
+
+        <a
+          [routerLink]="['/principal']"
+          class="btn btn-secondary position-absolute mt-5"
+          >Volver a Listado</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
