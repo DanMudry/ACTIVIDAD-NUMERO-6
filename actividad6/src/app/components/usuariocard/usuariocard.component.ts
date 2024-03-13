@@ -17,6 +17,7 @@ export class UsuariocardComponent {
   ngOnInit(): void {
     this.rutaActiva.params.subscribe(async (params: any) => {
       const idUsuario = params.idU;
+      console.log(params);
       console.log(idUsuario);
       try {
         let response = await this.usuarioService.getById(idUsuario);
