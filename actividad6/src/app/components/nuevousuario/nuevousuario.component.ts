@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-nuevousuario',
@@ -8,4 +8,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   templateUrl: './nuevousuario.component.html',
   styleUrl: './nuevousuario.component.css',
 })
-export class NuevousuarioComponent {}
+export class NuevousuarioComponent {
+  formAltaUsuario!: FormGroup;
+  constructor() {
+    nombre: new FormControl();
+  }
+}
