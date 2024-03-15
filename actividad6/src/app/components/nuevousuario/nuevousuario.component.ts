@@ -22,5 +22,7 @@ export class NuevousuarioComponent {
     );
   }
 
-  guardarDatosForm(): void {}
+  guardarDatosForm(): void {
+    console.log(this.formAltaUsuario.value);
+  }
 }
