@@ -2,13 +2,13 @@
   <link rel="stylesheet" href="nuevousuario.component.css" />
 </head>
 <h2 class="mt-0">NUEVO USUARIO</h2>
-<section class="container mt-2">
+<section class="container mt-0">
   <form
     [formGroup]="formAltaUsuario"
     class="card p-3 shadow"
     (ngSubmit)="guardarDatosForm()"
   >
-    <div class="my-2">
+    <div class="my-1">
       <label for="nombre" class="form-label">Nombre Usuario</label>
       <input
         type="text"
@@ -24,7 +24,7 @@
       <p class="campo-requerido">Debes colocar al menos 3 caracteres</p>
       }
     </div>
-    <div class="my-2">
+    <div class="my-1">
       <label for="apellido" class="form-label">Apellido Usuario</label>
       <input
         type="text"
@@ -38,7 +38,7 @@
       <p class="campo-requerido">Campo requerido, debes colocar tu apellido</p>
       }
     </div>
-    <div class="my-2">
+    <div class="my-1">
       <label for="email" class="form-label">Email Usuario</label>
       <input
         type="text"
@@ -53,7 +53,38 @@
       <p class="campo-requerido">El email ingresado es incorrecto</p>
       }
     </div>
-    <div class="my-2">
+    <div class="my-1">
+      <label for="alias" class="form-label">Alias</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Introduce tu ALIAS"
+        id="alias"
+        formControlName="alias"
+      />
+      @if(controlarCampo("alias","required")){
+      <p class="campo-requerido">Debes colocar tu ALIAS</p>
+      } @if(controlarCampo("alias","minlength")){
+      <p class="campo-requerido">Debes colocar al menos 5 caracteres</p>
+      }
+    </div>
+    <div class="my-1">
+      <label for="clave" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Introduce tu Password"
+        id="clave"
+        formControlName="clave"
+      />
+      @if(controlarCampo("clave","required")){
+      <p class="campo-requerido">Debes colocar tu password</p>
+      } @if(controlarCampo("clave","minlength")){
+      <p class="campo-requerido">Debes colocar al menos 5 caracteres</p>
+      }
+    </div>
+
+    <div class="my-1">
       <label for="imagen" class="form-label">Imagen Usuario</label>
       <input
         type="text"

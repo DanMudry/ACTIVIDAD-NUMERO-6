@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -6,6 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import { UsuariosService } from '../../services/usuarios.service';
+import { IUsuario } from '../../interfaces/iusuario.interface';
 
 @Component({
   selector: 'app-nuevousuario',
@@ -16,6 +18,8 @@ import { RouterOutlet } from '@angular/router';
 })
 export class NuevousuarioComponent {
   formAltaUsuario: FormGroup;
+  usuarioService = inject(UsuariosService);
+  insertarUsuario!: IUsuario;
   constructor() {
     this.formAltaUsuario = new FormGroup(
       {
@@ -30,14 +34,33 @@ export class NuevousuarioComponent {
             /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/
           ),
         ]),
+        alias: new FormControl(null, [
+          Validators.required,
+          Validators.minLength(5),
+        ]),
+        clave: new FormControl(null, [
+          Validators.required,
+          Validators.minLength(5),
+        ]),
+
         imagen: new FormControl(null, [Validators.required]),
       },
       []
     );
   }
 
-  guardarDatosForm(): void {
+  async guardarDatosForm(): Promise<void> {
+    let response: any;
     console.log(this.formAltaUsuario.value);
+    try {
+      let response: any;
+      response = await this.usuarioService.postNuevoUsuario(
+        this.formAltaUsuario.value
+      );
+      console.log(response);
+    } catch (err) {
+      alert('error');
+    }
   }
 
   controlarCampo(
