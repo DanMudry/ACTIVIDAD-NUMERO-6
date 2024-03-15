@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-nuevousuario',
@@ -13,10 +18,13 @@ export class NuevousuarioComponent {
   constructor() {
     this.formAltaUsuario = new FormGroup(
       {
-        nombre: new FormControl(null, []),
-        apellido: new FormControl(null, []),
+        nombre: new FormControl(null, [
+          Validators.required,
+          Validators.minLength(3),
+        ]),
+        apellido: new FormControl(null, [Validators.required]),
         email: new FormControl(null, []),
-        imagen: new FormControl(null, []),
+        imagen: new FormControl(null, [Validators.required]),
       },
       []
     );
