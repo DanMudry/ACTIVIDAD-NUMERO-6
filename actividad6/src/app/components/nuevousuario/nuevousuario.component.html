@@ -17,9 +17,11 @@
         id="nombre"
         formControlName="nombre"
       />
-      @if(formAltaUsuario.get("nombre")?.hasError("required")&&formAltaUsuario.get("nombre")?.touched){
 
-      <p class="campo-requerido">Campo requerido con al menos 3 caracteres</p>
+      @if(controlarCampo("nombre","required")){
+      <p class="campo-requerido">Debes colocar tu nombre</p>
+      } @if(controlarCampo("nombre","minlength")){
+      <p class="campo-requerido">Debes colocar al menos 3 caracteres</p>
       }
     </div>
     <div class="my-2">
@@ -31,7 +33,7 @@
         id="apellido"
         formControlName="apellido"
       />
-      @if(formAltaUsuario.get("apellido")?.hasError("required")&&formAltaUsuario.get("apellido")?.touched){
+      @if(controlarCampo("apellido","required")){
 
       <p class="campo-requerido">Campo requerido, debes colocar tu apellido</p>
       }
@@ -45,6 +47,9 @@
         id="email"
         formControlName="email"
       />
+      @if(controlarCampo("email","pattern")){
+      <p class="campo-requerido">El email ingresado es incorrecto</p>
+      }
     </div>
     <div class="my-2">
       <label for="imagen" class="form-label">Imagen Usuario</label>
@@ -55,9 +60,8 @@
         id="imagen"
         formControlName="imagen"
       />
-      @if(formAltaUsuario.get("imagen")?.hasError("required")&&formAltaUsuario.get("imagen")?.touched){
-
-      <p class="campo-requerido">Debes colocar url de tu imagen válida</p>
+      @if(controlarCampo("imagen","required")){
+      <p class="campo-requerido">Debes ingresar una URL de imagen</p>
       }
     </div>
     <input

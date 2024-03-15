@@ -23,7 +23,12 @@ export class NuevousuarioComponent {
           Validators.minLength(3),
         ]),
         apellido: new FormControl(null, [Validators.required]),
-        email: new FormControl(null, []),
+        email: new FormControl(null, [
+          Validators.required,
+          Validators.pattern(
+            /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/
+          ),
+        ]),
         imagen: new FormControl(null, [Validators.required]),
       },
       []
@@ -32,5 +37,15 @@ export class NuevousuarioComponent {
 
   guardarDatosForm(): void {
     console.log(this.formAltaUsuario.value);
+  }
+
+  controlarCampo(
+    campoValidado: string,
+    validador: string
+  ): boolean | undefined {
+    return (
+      this.formAltaUsuario.get(campoValidado)?.hasError(validador) &&
+      this.formAltaUsuario.get('nombre')?.touched
+    );
   }
 }

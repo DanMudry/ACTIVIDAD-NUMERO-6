@@ -3,7 +3,7 @@ input.ng-invalid.ng-touched {
 }
 
 input.ng-valid.ng-touched {
-  border-bottom: 3px solid lightskyblue;
+  border-bottom: 3px solid lightgreen;
 }
 
 .campo-requerido {
