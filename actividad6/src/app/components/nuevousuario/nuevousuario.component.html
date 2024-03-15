@@ -1,12 +1,18 @@
 <h2 class="mt-0">NUEVO USUARIO</h2>
 <section class="container mt-2">
-  <form action="" class="card p-3 shadow">
+  <form
+    [formGroup]="formAltaUsuario"
+    class="card p-3 shadow"
+    (ngSubmit)="traerDatosForm()"
+  >
     <div class="my-2">
-      <label for="name" class="form-label">Nombre Usuario</label>
+      <label for="nombre" class="form-label">Nombre Usuario</label>
       <input
         type="text"
         class="form-control"
         placeholder="Introduce nombre de usuario"
+        id="nombre"
+        formControlName="nombre"
       />
     </div>
     <div class="my-2">
@@ -15,6 +21,8 @@
         type="text"
         class="form-control"
         placeholder="Introduce apellido de usuario"
+        id="apellido"
+        formControlName="apellido"
       />
     </div>
     <div class="my-2">
@@ -23,6 +31,8 @@
         type="text"
         class="form-control"
         placeholder="Introduce email de usuario"
+        id="email"
+        formControlName="email"
       />
     </div>
     <div class="my-2">
@@ -31,7 +41,10 @@
         type="text"
         class="form-control"
         placeholder="Introduce url de foto usuario"
+        id="imagen"
+        formControlName="imagen"
       />
     </div>
+    <input type="submit" value="GUARDAR DATOS" class="btn btn-secondary" />
   </form>
 </section>

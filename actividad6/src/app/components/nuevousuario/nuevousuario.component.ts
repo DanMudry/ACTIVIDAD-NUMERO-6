@@ -9,8 +9,18 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './nuevousuario.component.css',
 })
 export class NuevousuarioComponent {
-  formAltaUsuario!: FormGroup;
+  formAltaUsuario: FormGroup;
   constructor() {
-    nombre: new FormControl();
+    this.formAltaUsuario = new FormGroup(
+      {
+        nombre: new FormControl(null, []),
+        apellido: new FormControl(null, []),
+        email: new FormControl(null, []),
+        imagen: new FormControl(null, []),
+      },
+      []
+    );
   }
+
+  guardarDatosForm(): void {}
 }
