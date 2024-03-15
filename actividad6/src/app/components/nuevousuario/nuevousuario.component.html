@@ -47,7 +47,9 @@
         id="email"
         formControlName="email"
       />
-      @if(controlarCampo("email","pattern")){
+      @if(controlarCampo("email","required")){
+      <p class="campo-requerido">Debes ingresar un email</p>
+      } @if(controlarCampo("email","pattern")){
       <p class="campo-requerido">El email ingresado es incorrecto</p>
       }
     </div>

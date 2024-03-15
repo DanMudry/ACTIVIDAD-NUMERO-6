@@ -45,7 +45,7 @@ export class NuevousuarioComponent {
   ): boolean | undefined {
     return (
       this.formAltaUsuario.get(campoValidado)?.hasError(validador) &&
-      this.formAltaUsuario.get('nombre')?.touched
+      this.formAltaUsuario.get(campoValidado)?.touched
     );
   }
 }
