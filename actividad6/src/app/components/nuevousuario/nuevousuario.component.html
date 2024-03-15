@@ -1,1 +1,76 @@
-<p>nuevousuario works!</p>
+<head>
+  <link rel="stylesheet" href="nuevousuario.component.css" />
+</head>
+<h2 class="mt-0">NUEVO USUARIO</h2>
+<section class="container mt-2">
+  <form
+    [formGroup]="formAltaUsuario"
+    class="card p-3 shadow"
+    (ngSubmit)="guardarDatosForm()"
+  >
+    <div class="my-2">
+      <label for="nombre" class="form-label">Nombre Usuario</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Introduce nombre de usuario"
+        id="nombre"
+        formControlName="nombre"
+      />
+
+      @if(controlarCampo("nombre","required")){
+      <p class="campo-requerido">Debes colocar tu nombre</p>
+      } @if(controlarCampo("nombre","minlength")){
+      <p class="campo-requerido">Debes colocar al menos 3 caracteres</p>
+      }
+    </div>
+    <div class="my-2">
+      <label for="apellido" class="form-label">Apellido Usuario</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Introduce apellido de usuario"
+        id="apellido"
+        formControlName="apellido"
+      />
+      @if(controlarCampo("apellido","required")){
+
+      <p class="campo-requerido">Campo requerido, debes colocar tu apellido</p>
+      }
+    </div>
+    <div class="my-2">
+      <label for="email" class="form-label">Email Usuario</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Introduce email de usuario"
+        id="email"
+        formControlName="email"
+      />
+      @if(controlarCampo("email","required")){
+      <p class="campo-requerido">Debes ingresar un email</p>
+      } @if(controlarCampo("email","pattern")){
+      <p class="campo-requerido">El email ingresado es incorrecto</p>
+      }
+    </div>
+    <div class="my-2">
+      <label for="imagen" class="form-label">Imagen Usuario</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Introduce url de foto usuario"
+        id="imagen"
+        formControlName="imagen"
+      />
+      @if(controlarCampo("imagen","required")){
+      <p class="campo-requerido">Debes ingresar una URL de imagen</p>
+      }
+    </div>
+    <input
+      type="submit"
+      value="GUARDAR DATOS"
+      class="btn btn-secondary"
+      [disabled]="!formAltaUsuario"
+    />
+  </form>
+</section>

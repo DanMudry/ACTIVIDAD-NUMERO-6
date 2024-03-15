@@ -1,0 +1,14 @@
+input.ng-invalid.ng-touched {
+  border-bottom: 3px solid tomato;
+}
+
+input.ng-valid.ng-touched {
+  border-bottom: 3px solid lightgreen;
+}
+
+.campo-requerido {
+  color: tomato;
+  font-size: 75%;
+  margin: 0px;
+  margin-left: 10px;
+}
