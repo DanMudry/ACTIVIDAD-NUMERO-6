@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { UsuariosService } from '../../services/usuarios.service';
 import { IUsuario } from '../../interfaces/iusuario.interface';
 import Swal from 'sweetalert2';
@@ -13,13 +13,15 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-nuevousuario',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterOutlet],
+  imports: [ReactiveFormsModule],
   templateUrl: './nuevousuario.component.html',
   styleUrl: './nuevousuario.component.css',
 })
 export class NuevousuarioComponent {
   formAltaUsuario: FormGroup;
   usuarioService = inject(UsuariosService);
+  ruta = inject(Router);
+  rutaActiva = inject(ActivatedRoute);
   insertarUsuario: IUsuario = {
     _id: '',
     id: 0,
@@ -30,6 +32,12 @@ export class NuevousuarioComponent {
     image: '',
     password: '',
   };
+
+  ngOnInit() {
+    this.rutaActiva.params.subscribe((params: any) => {
+      console.log(params);
+    });
+  }
 
   constructor() {
     this.formAltaUsuario = new FormGroup(
@@ -59,12 +67,11 @@ export class NuevousuarioComponent {
     this.insertarUsuario.email = this.formAltaUsuario.value.email;
     this.insertarUsuario.image = this.formAltaUsuario.value.imagen;
 
-    console.log(this.formAltaUsuario.value);
     try {
       const response = await this.usuarioService.postNuevoUsuario(
         this.insertarUsuario
       );
-      console.log(response);
+      this.ruta.navigate(['/principal']);
       Swal.fire({
         title: 'Bienvenido ' + response.first_name,
         text: 'Estas en UNIR',
