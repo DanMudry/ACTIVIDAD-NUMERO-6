@@ -8,6 +8,7 @@ import {
 import { RouterOutlet } from '@angular/router';
 import { UsuariosService } from '../../services/usuarios.service';
 import { IUsuario } from '../../interfaces/iusuario.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nuevousuario',
@@ -60,11 +61,16 @@ export class NuevousuarioComponent {
 
     console.log(this.formAltaUsuario.value);
     try {
-      let response: any;
-      response = await this.usuarioService.postNuevoUsuario(
+      const response = await this.usuarioService.postNuevoUsuario(
         this.insertarUsuario
       );
       console.log(response);
+      Swal.fire({
+        title: 'Bienvenido ' + response.first_name,
+        text: 'Estas en UNIR',
+        icon: 'success',
+      });
+      this.formAltaUsuario.reset();
     } catch (err) {
       alert('error');
     }
