@@ -19,7 +19,17 @@ import { IUsuario } from '../../interfaces/iusuario.interface';
 export class NuevousuarioComponent {
   formAltaUsuario: FormGroup;
   usuarioService = inject(UsuariosService);
-  insertarUsuario!: IUsuario;
+  insertarUsuario: IUsuario = {
+    _id: '',
+    id: 0,
+    first_name: '',
+    last_name: '',
+    username: '',
+    email: '',
+    image: '',
+    password: '',
+  };
+
   constructor() {
     this.formAltaUsuario = new FormGroup(
       {
@@ -34,14 +44,6 @@ export class NuevousuarioComponent {
             /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/
           ),
         ]),
-        alias: new FormControl(null, [
-          Validators.required,
-          Validators.minLength(5),
-        ]),
-        clave: new FormControl(null, [
-          Validators.required,
-          Validators.minLength(5),
-        ]),
 
         imagen: new FormControl(null, [Validators.required]),
       },
@@ -51,11 +53,16 @@ export class NuevousuarioComponent {
 
   async guardarDatosForm(): Promise<void> {
     let response: any;
+    this.insertarUsuario.first_name = this.formAltaUsuario.value.nombre;
+    this.insertarUsuario.last_name = this.formAltaUsuario.value.apellido;
+    this.insertarUsuario.email = this.formAltaUsuario.value.email;
+    this.insertarUsuario.image = this.formAltaUsuario.value.imagen;
+
     console.log(this.formAltaUsuario.value);
     try {
       let response: any;
       response = await this.usuarioService.postNuevoUsuario(
-        this.formAltaUsuario.value
+        this.insertarUsuario
       );
       console.log(response);
     } catch (err) {
