@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -6,6 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import { UsuariosService } from '../../services/usuarios.service';
+import { IUsuario } from '../../interfaces/iusuario.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nuevousuario',
@@ -16,6 +19,18 @@ import { RouterOutlet } from '@angular/router';
 })
 export class NuevousuarioComponent {
   formAltaUsuario: FormGroup;
+  usuarioService = inject(UsuariosService);
+  insertarUsuario: IUsuario = {
+    _id: '',
+    id: 0,
+    first_name: '',
+    last_name: '',
+    username: '',
+    email: '',
+    image: '',
+    password: '',
+  };
+
   constructor() {
     this.formAltaUsuario = new FormGroup(
       {
@@ -30,14 +45,35 @@ export class NuevousuarioComponent {
             /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/
           ),
         ]),
+
         imagen: new FormControl(null, [Validators.required]),
       },
       []
     );
   }
 
-  guardarDatosForm(): void {
+  async guardarDatosForm(): Promise<void> {
+    let response: any;
+    this.insertarUsuario.first_name = this.formAltaUsuario.value.nombre;
+    this.insertarUsuario.last_name = this.formAltaUsuario.value.apellido;
+    this.insertarUsuario.email = this.formAltaUsuario.value.email;
+    this.insertarUsuario.image = this.formAltaUsuario.value.imagen;
+
     console.log(this.formAltaUsuario.value);
+    try {
+      const response = await this.usuarioService.postNuevoUsuario(
+        this.insertarUsuario
+      );
+      console.log(response);
+      Swal.fire({
+        title: 'Bienvenido ' + response.first_name,
+        text: 'Estas en UNIR',
+        icon: 'success',
+      });
+      this.formAltaUsuario.reset();
+    } catch (err) {
+      alert('error');
+    }
   }
 
   controlarCampo(
