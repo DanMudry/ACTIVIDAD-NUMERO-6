@@ -11,11 +11,10 @@
         <p>Email: {{ unUsuario.email }}</p>
         <p>Alias: {{ unUsuario.username }}</p>
 
-        <a
-          [routerLink]="['/principal']"
-          class="btn btn-secondary position-absolute mt-5"
-          >Volver a Listado</a
-        >
+        <app-botonera
+          [estoyEn]="'card'"
+          [idUsuario]="unUsuario._id"
+        ></app-botonera>
       </div>
     </div>
   </div>
