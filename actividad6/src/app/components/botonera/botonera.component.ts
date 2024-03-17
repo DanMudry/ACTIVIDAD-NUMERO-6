@@ -26,7 +26,7 @@ export class BotoneraComponent {
         this.unUsuario.first_name +
         ' ' +
         this.unUsuario.last_name,
-      text: this.unUsuario.first_name + ' ' + this.unUsuario.last_name,
+      text: '',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -34,11 +34,11 @@ export class BotoneraComponent {
       confirmButtonText: 'Si, deseo borrarlo',
     }).then(async (result) => {
       if (result.isConfirmed) {
-        let response = await this.usuarioService.getById(id);
+        let response = await this.usuarioService.deleteUsuario(id);
         this.unUsuario = response;
         Swal.fire({
-          title: 'Usuario Eliminado',
-          text: 'Haz abandonado UNIR',
+          title: response.first_name + ' ha sido eliminado',
+          text: 'Ha abandonado UNIR',
           icon: 'success',
         });
       }
