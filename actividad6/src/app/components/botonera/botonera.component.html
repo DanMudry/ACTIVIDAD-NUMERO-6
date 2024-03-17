@@ -1,25 +1,38 @@
+<head>
+  <link href="botonera.component.css" />
+</head>
 <div class="d-flex m-3 mb-lg-3 gap-1">
   @if(estoyEn==='view'){
 
   <a class="btn btn-secondary" [routerLink]="['/detalleusuario', idUsuario]"
-    >Detalle</a
+    ><i class="bi bi-person-bounding-box"></i> Detalle</a
   >
-  <a class="btn btn-warning" [routerLink]="['/modificausuario', idUsuario]"
+  <a
+    class="btn btn-warning bi bi-receipt"
+    [routerLink]="['/modificausuario', idUsuario]"
     >Actualizar</a
   >
-  <button class="btn btn-danger" (click)="eliminarUsuario(idUsuario)">
+  <button
+    class="btn btn-danger bi bi-trash3"
+    (click)="eliminarUsuario(idUsuario)"
+  >
     Eliminar
   </button>
 
   }@else if(estoyEn==='card'){
-  <a class="btn btn-warning" [routerLink]="['/modificausuario', idUsuario]"
+  <a
+    class="btn btn-warning bi bi-receipt"
+    [routerLink]="['/modificausuario', idUsuario]"
     >Actualizar</a
   >
-  <button class="btn btn-danger" (click)="eliminarUsuario(idUsuario)">
+  <button
+    class="btn btn-danger bi bi-trash3"
+    (click)="eliminarUsuario(idUsuario)"
+  >
     Eliminar
   </button>
 
-  <a class="btn btn-secondary" [routerLink]="['/principal']"
+  <a class="btn btn-secondary bi bi-reply" [routerLink]="['/principal']"
     >Listado Usuarios</a
   >
   }
