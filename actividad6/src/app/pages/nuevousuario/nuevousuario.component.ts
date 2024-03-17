@@ -22,6 +22,8 @@ export class NuevousuarioComponent {
   usuarioService = inject(UsuariosService);
   ruta = inject(Router);
   rutaActiva = inject(ActivatedRoute);
+  queHago: string = 'NUEVO ';
+  GuardoActualizo: string = 'GUARDAR DATOS';
 
   constructor() {
     this.formAltaUsuario = new FormGroup(
@@ -47,8 +49,10 @@ export class NuevousuarioComponent {
   }
   ngOnInit() {
     this.rutaActiva.params.subscribe(async (params: any) => {
-      console.log(params.idM);
       if (params.idM) {
+        this.queHago = 'ACTUALIZAR DATOS ';
+        this.GuardoActualizo = 'GUARDAR ACTUALIZACION';
+
         const response = await this.usuarioService.getById(params.idM);
         console.log(response);
         this.formAltaUsuario = new FormGroup(
@@ -76,23 +80,40 @@ export class NuevousuarioComponent {
   }
 
   async guardarDatosForm(): Promise<void> {
-    let response: any;
+    if (this.formAltaUsuario.value._id) {
+      //Actualizo
+      try {
+        const response = await this.usuarioService.actualizaUsuario(
+          this.formAltaUsuario.value
+        );
+        Swal.fire({
+          title: 'Ey.. ' + this.formAltaUsuario.value.nombre,
+          text: 'Tus datos han sido actualizados',
+          icon: 'success',
+        });
+      } catch (err) {
+        alert('error');
+      }
+    } else {
+      //Agrego nuevo usuario
 
-    try {
-      const response = await this.usuarioService.postNuevoUsuario(
-        this.formAltaUsuario.value
-      );
-      console.log(response);
-      Swal.fire({
-        title: 'Bienvenido ' + this.formAltaUsuario.value.nombre,
-        text: 'Estas en UNIR',
-        icon: 'success',
-      });
-      this.ruta.navigate(['/principal']);
-      this.formAltaUsuario.reset();
-    } catch (err) {
-      alert('error');
-    }
+      try {
+        this.queHago = 'NUEVO ';
+        const response = await this.usuarioService.postNuevoUsuario(
+          this.formAltaUsuario.value
+        );
+        console.log(response);
+        Swal.fire({
+          title: 'Bienvenido ' + this.formAltaUsuario.value.nombre,
+          text: 'Estas en UNIR',
+          icon: 'success',
+        });
+        this.formAltaUsuario.reset();
+      } catch (err) {
+        alert('error');
+      }
+    } //termina el else
+    this.ruta.navigate(['/principal']);
   }
 
   controlarCampo(

@@ -33,4 +33,12 @@ export class UsuariosService {
       this.httpUsuario.delete<IUsuario>(`${this.miUrl}/${id}`)
     );
   }
+  actualizaUsuario(actualiza: IUsuario): Promise<IUsuario> {
+    return lastValueFrom(
+      this.httpUsuario.put<IUsuario>(
+        `${this.miUrl}/${actualiza._id}`,
+        actualiza
+      )
+    );
+  }
 }
