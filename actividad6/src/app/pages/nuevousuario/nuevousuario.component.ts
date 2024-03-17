@@ -24,6 +24,7 @@ export class NuevousuarioComponent {
   rutaActiva = inject(ActivatedRoute);
   queHago: string = 'NUEVO ';
   GuardoActualizo: string = 'GUARDAR DATOS';
+  colorBoton: string = 'btn btn-success';
 
   constructor() {
     this.formAltaUsuario = new FormGroup(
@@ -52,6 +53,7 @@ export class NuevousuarioComponent {
       if (params.idM) {
         this.queHago = 'ACTUALIZAR DATOS ';
         this.GuardoActualizo = 'GUARDAR ACTUALIZACION';
+        this.colorBoton = 'btn btn-warning';
 
         const response = await this.usuarioService.getById(params.idM);
         console.log(response);

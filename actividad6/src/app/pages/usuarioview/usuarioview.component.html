@@ -1,19 +1,20 @@
 <div class="card shadow p-2 mb-4">
   <div class="row g-0">
     <div
-      class="col-md-4 d-flex justify-content-center align-items-center ms-0 mt-3"
+      class="col-md-4 col-sm-12 d-flex justify-content-center align-items-center"
     >
-      <img [src]="miUsuario.image" class="img-fluid mb-2 ml-2 rounded-start" />
+      <img [src]="miUsuario.image" class="img-fluid mb-2 rounded-start" />
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 col-sm-12">
       <div class="card-body">
         <h4 class="card-title text-bg-dark">
           {{ miUsuario.first_name }}, {{ miUsuario.last_name }}
         </h4>
       </div>
-
-      <app-botonera [estoyEn]="'view'" [idUsuario]="miUsuario._id">
-      </app-botonera>
+      <app-botonera
+        [estoyEn]="'view'"
+        [idUsuario]="miUsuario._id"
+      ></app-botonera>
     </div>
   </div>
 </div>

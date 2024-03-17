@@ -1,7 +1,7 @@
 <head>
   <link rel="stylesheet" href="nuevousuario.component.css" />
 </head>
-<h2 class="mt-0">{{ queHago }}USUARIO</h2>
+<h2 class="mt-0 m-3">{{ queHago }}USUARIO</h2>
 <section class="container mt-3">
   <form
     [formGroup]="formAltaUsuario"
@@ -70,7 +70,7 @@
     <input
       type="submit"
       value="{{ GuardoActualizo }}"
-      class="btn btn-secondary"
+      class="{{ colorBoton }} btn-sm mx-auto"
       [disabled]="!formAltaUsuario.valid"
     />
   </form>
