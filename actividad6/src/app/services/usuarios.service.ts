@@ -27,4 +27,10 @@ export class UsuariosService {
   postNuevoUsuario(insert: IUsuario): Promise<IUsuario> {
     return lastValueFrom(this.httpUsuario.post<IUsuario>(this.miUrl, insert));
   }
+
+  deleteUsuario(id: string): Promise<IUsuario> {
+    return lastValueFrom(
+      this.httpUsuario.delete<IUsuario>(`${this.miUrl}/${id}`)
+    );
+  }
 }
