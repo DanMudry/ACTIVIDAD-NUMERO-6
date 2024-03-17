@@ -42,5 +42,3 @@ export class UsuariosService {
     );
   }
 }
-//modificar estilos
-//controlar errores
