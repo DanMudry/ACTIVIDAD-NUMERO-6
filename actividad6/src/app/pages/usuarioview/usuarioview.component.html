@@ -11,21 +11,6 @@
           {{ miUsuario.first_name }}, {{ miUsuario.last_name }}
         </h4>
       </div>
-      <!--<div class="card-body" style="position: absolute; bottom: 0">
-        <a
-          class="card-link text-black-50"
-          [routerLink]="['/detalleusuario', miUsuario._id]"
-          >Detalle</a
-        >
-        <a
-          class="card-link text-black-50"
-          [routerLink]="['/modificausuario', miUsuario._id]"
-          >Modificar</a
-        >
-        <a class="card-link text-black-50" [routerLink]="['/eliminausuario']"
-          >Eliminar</a
-        >
-      </div>-->
 
       <app-botonera [estoyEn]="'view'" [idUsuario]="miUsuario._id">
       </app-botonera>

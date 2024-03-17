@@ -12,7 +12,8 @@ export const routes: Routes = [
   { path: 'principal', component: UsuariolistComponent },
   { path: 'principal/:idusuario', component: UsuarioviewComponent },
   { path: 'nuevousuario', component: NuevousuarioComponent },
-  { path: 'modificausuario/:idM', component: ModificausuarioComponent },
+  //{ path: 'modificausuario/:idM', component: ModificausuarioComponent },
+  { path: 'modificausuario/:idM', component: NuevousuarioComponent },
   { path: 'eliminausuario', component: EliminausuarioComponent },
   { path: 'detalleusuario/:idU', component: UsuariocardComponent },
 ];

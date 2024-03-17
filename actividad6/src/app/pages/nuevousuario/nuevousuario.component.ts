@@ -22,26 +22,12 @@ export class NuevousuarioComponent {
   usuarioService = inject(UsuariosService);
   ruta = inject(Router);
   rutaActiva = inject(ActivatedRoute);
-  insertarUsuario: IUsuario = {
-    _id: '',
-    id: 0,
-    first_name: '',
-    last_name: '',
-    username: '',
-    email: '',
-    image: '',
-    password: '',
-  };
-
-  ngOnInit() {
-    this.rutaActiva.params.subscribe((params: any) => {
-      console.log(params);
-    });
-  }
 
   constructor() {
     this.formAltaUsuario = new FormGroup(
       {
+        _id: new FormControl(null, []),
+        id: new FormControl(null, []),
         nombre: new FormControl(null, [
           Validators.required,
           Validators.minLength(3),
@@ -59,24 +45,50 @@ export class NuevousuarioComponent {
       []
     );
   }
+  ngOnInit() {
+    this.rutaActiva.params.subscribe(async (params: any) => {
+      console.log(params.idM);
+      if (params.idM) {
+        const response = await this.usuarioService.getById(params.idM);
+        console.log(response);
+        this.formAltaUsuario = new FormGroup(
+          {
+            _id: new FormControl(response._id, []),
+            nombre: new FormControl(response.first_name, [
+              Validators.required,
+              Validators.minLength(3),
+            ]),
+            apellido: new FormControl(response.last_name, [
+              Validators.required,
+            ]),
+            email: new FormControl(response.email, [
+              Validators.required,
+              Validators.pattern(
+                /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/
+              ),
+            ]),
+            imagen: new FormControl(response.image, [Validators.required]),
+          },
+          []
+        );
+      }
+    });
+  }
 
   async guardarDatosForm(): Promise<void> {
     let response: any;
-    this.insertarUsuario.first_name = this.formAltaUsuario.value.nombre;
-    this.insertarUsuario.last_name = this.formAltaUsuario.value.apellido;
-    this.insertarUsuario.email = this.formAltaUsuario.value.email;
-    this.insertarUsuario.image = this.formAltaUsuario.value.imagen;
 
     try {
       const response = await this.usuarioService.postNuevoUsuario(
-        this.insertarUsuario
+        this.formAltaUsuario.value
       );
-      this.ruta.navigate(['/principal']);
+      console.log(response);
       Swal.fire({
-        title: 'Bienvenido ' + response.first_name,
+        title: 'Bienvenido ' + this.formAltaUsuario.value.nombre,
         text: 'Estas en UNIR',
         icon: 'success',
       });
+      this.ruta.navigate(['/principal']);
       this.formAltaUsuario.reset();
     } catch (err) {
       alert('error');
