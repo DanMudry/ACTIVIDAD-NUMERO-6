@@ -1,0 +1,26 @@
+<div class="d-flex m-3 mb-lg-3 gap-1">
+  @if(estoyEn==='view'){
+
+  <a class="btn btn-secondary" [routerLink]="['/detalleusuario', idUsuario]"
+    >Detalle</a
+  >
+  <a class="btn btn-warning" [routerLink]="['/modificausuario', idUsuario]"
+    >Actualizar</a
+  >
+  <button class="btn btn-danger" (click)="eliminarUsuario(idUsuario)">
+    Eliminar
+  </button>
+
+  }@else if(estoyEn==='card'){
+  <a class="btn btn-warning" [routerLink]="['/modificausuario', idUsuario]"
+    >Actualizar</a
+  >
+  <button class="btn btn-danger" (click)="eliminarUsuario(idUsuario)">
+    Eliminar
+  </button>
+
+  <a class="btn btn-secondary" [routerLink]="['/principal']"
+    >Listado Usuarios</a
+  >
+  }
+</div>
