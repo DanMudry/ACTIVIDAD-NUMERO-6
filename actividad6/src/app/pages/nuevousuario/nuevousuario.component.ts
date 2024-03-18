@@ -56,7 +56,7 @@ export class NuevousuarioComponent {
         this.colorBoton = 'btn btn-warning';
 
         const response = await this.usuarioService.getById(params.idM);
-        console.log(response);
+
         this.formAltaUsuario = new FormGroup(
           {
             _id: new FormControl(response._id, []),
